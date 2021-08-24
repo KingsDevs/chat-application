@@ -5,6 +5,7 @@ class Auth extends MY_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('auth/AuthModel');
     }
 
     public function login_get()
@@ -22,7 +23,7 @@ class Auth extends MY_Controller
         $this->form_validation->set_rules('firstname', 'First Name', 'trim|required|alpha');
         $this->form_validation->set_rules('lastname', 'Last Name', 'trim|required|alpha');
         $this->form_validation->set_rules('username', 'Username', array(
-            'trim','required','min_length[3]','alpha_numeric','is_unique[users.username]'));
+            'trim','required','min_length[3]','alpha_numeric', 'is_unique[users.username]'), array('is_unique'=>'Username is already taken!'));
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
         $this->form_validation->set_rules('cpassword', 'Confirm Password', 'trim|required|min_length[8]|matches[password]', array('matches'=>'Passwords do not match'));
 
@@ -39,7 +40,17 @@ class Auth extends MY_Controller
                 'password'=>$this->input->post('password'),
             );
 
-            print_r($data);
+            $result = $this->AuthModel->insert_user($data);
+            if($result)
+            {
+                $this->session->set_flashdata('status', 'You successfuly registered!');
+                redirect(site_url('login'));
+            }
+            else
+            {
+                $this->session->set_flashdata('status', 'Something went wrong!');
+                redirect(site_url('register'));
+            }
         }
     }
 }
