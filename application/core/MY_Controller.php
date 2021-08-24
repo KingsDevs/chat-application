@@ -5,7 +5,7 @@ require APPPATH."third_party/MX/Controller.php";
 
 class MY_Controller extends MX_Controller 
 {
-
+    protected $title = 'Chat Application';
 
     public function __construct()
     {

@@ -20,6 +20,16 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		parent::__construct();
+		$this->load->library('session');
+
+		if($this->session->has_userdata('userdata'))
+		{
+			redirect(site_url('home'));
+		}
+		else
+		{
+			redirect(site_url('login'));
+		}
 	}
 }
