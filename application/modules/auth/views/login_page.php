@@ -20,7 +20,7 @@
                                 <button type="submit" class="btn btn-success">Login</button>
                             </div>
                             <br>
-                            <p class="text-center">You don't have an account? <a href="#">Sign Up</a></p>
+                            <p class="text-center">You don't have an account? <a href="<?php echo site_url('signup'); ?>">Sign Up</a></p>
                         </form>
                     </div>
                 </div>
