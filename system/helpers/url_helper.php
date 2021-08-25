@@ -263,6 +263,11 @@ if ( ! function_exists('mailto'))
 	}
 }
 
+// if ( ! function_exists('upload_path'))
+// {
+// 	function upload_path()
+// }
+
 // ------------------------------------------------------------------------
 
 if ( ! function_exists('safe_mailto'))

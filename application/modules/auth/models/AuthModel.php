@@ -38,4 +38,33 @@ class AuthModel extends CI_Model
         return FALSE;
         
     }
+
+    public function login_user($data)
+    {
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where('username' , $data['username']);
+        $this->db->limit(1);
+
+        $query = $this->db->get();
+
+        if($query->num_rows() == 1)
+        {
+            if(password_verify($data['password'], $query->row()->password))
+            {
+                $data = $query->row();
+                $data->firstname = $this->encrypt->decode($data->firstname);
+                $data->lastname = $this->encrypt->decode($data->lastname);
+                return $data;
+            }
+            else
+            {
+                return FALSE;
+            }
+        } 
+        else
+        {
+            return FALSE;
+        }
+    }
 }
