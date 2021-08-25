@@ -26,6 +26,7 @@ class Auth extends MY_Controller
             'trim','required','min_length[3]','alpha_numeric', 'is_unique[users.username]'), array('is_unique'=>'Username is already taken!'));
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
         $this->form_validation->set_rules('cpassword', 'Confirm Password', 'trim|required|min_length[8]|matches[password]', array('matches'=>'Passwords do not match'));
+        $this->form_validation->set_rules('profile_pic', 'trim|required');
 
         if ($this->form_validation->run() == FALSE)
         {
@@ -33,24 +34,49 @@ class Auth extends MY_Controller
         }
         else
         {
-            $data = array(
-                'firstname'=>$this->input->post('firstname'),
-                'lastname'=>$this->input->post('lastname'),
-                'username'=>$this->input->post('username'),
-                'password'=>$this->input->post('password'),
-            );
+            $config['upload_path']          = './assets/uploads/profile';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['max_size']             = 0;
+            $config['max_width']            = 0;
+            $config['max_height']           = 0;
+            $config['encrypt_name']           = TRUE;
 
-            $result = $this->AuthModel->insert_user($data);
-            if($result)
+            $this->load->library('upload', $config);
+
+            if ( ! $this->upload->do_upload('profile_pic'))
             {
-                $this->session->set_flashdata('status', 'You successfuly registered!');
-                redirect(site_url('login'));
+                $error = array('error' => $this->upload->display_errors());
+                $this->templates->show($this->title.' | Signup', 'auth/signup_page', $error);
             }
             else
             {
-                $this->session->set_flashdata('status', 'Something went wrong!');
-                redirect(site_url('register'));
+                $profile_pic_data = array('upload_data' => $this->upload->data());
+                $data = array(
+                    'firstname'=>$this->input->post('firstname'),
+                    'lastname'=>$this->input->post('lastname'),
+                    'username'=>$this->input->post('username'),
+                    'password'=>$this->input->post('password'),
+                    'profile_pic'=>$profile_pic_data['upload_data']['file_name'],
+                );
+    
+                $result = $this->AuthModel->insert_user($data);
+                if($result)
+                {
+                    $this->session->set_flashdata('status', 'You successfuly registered!');
+                    redirect(site_url('login'));
+                }
+                else
+                {
+                    $this->session->set_flashdata('status', 'Something went wrong!');
+                    redirect(site_url('register'));
+                }
+
             }
+
+            
         }
     }
+
+
+
 }

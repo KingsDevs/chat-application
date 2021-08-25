@@ -6,7 +6,7 @@
                     <div class="card-body">
                         <h3 class="card-title text-center">Chat Application Signup</h3>
                         <br>
-                        <form action="<?php echo site_url('signup') ?>" method="POST">
+                        <form action="<?php echo site_url('signup') ?>" method="POST" enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label class="form-label">First Name</label>
                                 <input type="text" class="form-control" placeholder="First Name" name="firstname" value="<?php echo set_value('firstname'); ?>" autocomplete="off">
@@ -31,6 +31,11 @@
                                 <label class="form-label">Confirm Password</label>
                                 <input type="password" class="form-control" name="cpassword">
                                 <small style="color:red;"><?php echo form_error('cpassword'); ?></small>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Profile Picture</label>
+                                <input class="form-control form-control-sm" name="profile_pic" type="file" required>
+                                <small style="color:red;"><?php echo form_error('profile_pic'); ?></small>
                             </div>
                             <br>
                             <div class="d-grid gap-2">
