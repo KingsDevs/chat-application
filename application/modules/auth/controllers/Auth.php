@@ -109,7 +109,7 @@ class Auth extends MY_Controller
                 else
                 {
                     $this->session->set_flashdata('status', 'Something went wrong!');
-                    redirect(site_url('register'));
+                    redirect(site_url('signup'));
                 }
 
             }
