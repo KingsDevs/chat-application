@@ -6,6 +6,12 @@ class Auth extends MY_Controller
     {
         parent::__construct();
         $this->load->model('auth/AuthModel');
+
+        if($this->session->has_userdata('userdata'))
+        {
+            $this->session->set_flashdata('status', 'You are already logged in! ');
+            redirect(site_url('messaging'));
+        }
     }
 
     public function login_get()

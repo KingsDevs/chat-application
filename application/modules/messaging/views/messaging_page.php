@@ -1,10 +1,24 @@
 
+<?php if($this->session->flashdata('status') !== NULL) : ?>
+    <div class="alert alert-warning text-center" role="alert">
+        <?php echo $this->session->flashdata('status'); ?>
+        <?php $this->session->set_flashdata('status', NULL); ?>
+    </div>
+<?php endif ; ?>
+
 <div id="frame">
 	<div id="sidepanel">
 		<div id="profile">
 			<div class="wrap">
-				<img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" class="online" alt="" />
-				<p>Mike Ross</p>
+				<img id="profile-img" src="<?php echo base_url('/assets/uploads/profile/'.$this->session->userdata('userdata')['profile_pic']); ?>" class="online" alt="" />
+				<div class="btn-group dropend">
+                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div style="color:white;"><?php echo $this->session->userdata('userdata')['firstname'].' '.$this->session->userdata('userdata')['lastname'] ?></div>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="<?php echo site_url('logout'); ?>">Logout</a></li>
+                    </ul>
+                </div>
 				<i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
 				<div id="status-options">
 					<ul>
@@ -30,16 +44,6 @@
 		</div>
 		<div id="contacts">
 			<ul>
-				<li class="contact">
-					<div class="wrap">
-						<span class="contact-status online"></span>
-						<img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
-						<div class="meta">
-							<p class="name">Louis Litt</p>
-							<p class="preview">You just got LITT up, Mike.</p>
-						</div>
-					</div>
-				</li>
 				<li class="contact active">
 					<div class="wrap">
 						<span class="contact-status busy"></span>
@@ -57,76 +61,6 @@
 						<div class="meta">
 							<p class="name">Rachel Zane</p>
 							<p class="preview">I was thinking that we could have chicken tonight, sounds good?</p>
-						</div>
-					</div>
-				</li>
-				<li class="contact">
-					<div class="wrap">
-						<span class="contact-status online"></span>
-						<img src="http://emilcarlsson.se/assets/donnapaulsen.png" alt="" />
-						<div class="meta">
-							<p class="name">Donna Paulsen</p>
-							<p class="preview">Mike, I know everything! I'm Donna..</p>
-						</div>
-					</div>
-				</li>
-				<li class="contact">
-					<div class="wrap">
-						<span class="contact-status busy"></span>
-						<img src="http://emilcarlsson.se/assets/jessicapearson.png" alt="" />
-						<div class="meta">
-							<p class="name">Jessica Pearson</p>
-							<p class="preview">Have you finished the draft on the Hinsenburg deal?</p>
-						</div>
-					</div>
-				</li>
-				<li class="contact">
-					<div class="wrap">
-						<span class="contact-status"></span>
-						<img src="http://emilcarlsson.se/assets/haroldgunderson.png" alt="" />
-						<div class="meta">
-							<p class="name">Harold Gunderson</p>
-							<p class="preview">Thanks Mike! :)</p>
-						</div>
-					</div>
-				</li>
-				<li class="contact">
-					<div class="wrap">
-						<span class="contact-status"></span>
-						<img src="http://emilcarlsson.se/assets/danielhardman.png" alt="" />
-						<div class="meta">
-							<p class="name">Daniel Hardman</p>
-							<p class="preview">We'll meet again, Mike. Tell Jessica I said 'Hi'.</p>
-						</div>
-					</div>
-				</li>
-				<li class="contact">
-					<div class="wrap">
-						<span class="contact-status busy"></span>
-						<img src="http://emilcarlsson.se/assets/katrinabennett.png" alt="" />
-						<div class="meta">
-							<p class="name">Katrina Bennett</p>
-							<p class="preview">I've sent you the files for the Garrett trial.</p>
-						</div>
-					</div>
-				</li>
-				<li class="contact">
-					<div class="wrap">
-						<span class="contact-status"></span>
-						<img src="http://emilcarlsson.se/assets/charlesforstman.png" alt="" />
-						<div class="meta">
-							<p class="name">Charles Forstman</p>
-							<p class="preview">Mike, this isn't over.</p>
-						</div>
-					</div>
-				</li>
-				<li class="contact">
-					<div class="wrap">
-						<span class="contact-status"></span>
-						<img src="http://emilcarlsson.se/assets/jonathansidwell.png" alt="" />
-						<div class="meta">
-							<p class="name">Jonathan Sidwell</p>
-							<p class="preview"><span>You:</span> That's bullshit. This deal is solid.</p>
 						</div>
 					</div>
 				</li>
