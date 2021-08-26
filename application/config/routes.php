@@ -59,3 +59,5 @@ $route['login']['POST'] = 'auth/login';
 $route['signup']['GET'] = 'auth/signup_get';
 $route['signup']['POST'] = 'auth/signup';
 
+$route['messaging']['GET'] = 'messaging/messaging_get';
+
