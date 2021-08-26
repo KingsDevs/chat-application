@@ -25,7 +25,7 @@ class Welcome extends CI_Controller {
 
 		if($this->session->has_userdata('userdata'))
 		{
-			redirect(site_url('login'));
+			redirect(site_url('messaging'));
 		}
 		else
 		{

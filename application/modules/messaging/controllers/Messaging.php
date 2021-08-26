@@ -9,6 +9,6 @@ class Messaging extends MY_Controller
 
     public function messaging_get()
     {
-        
+        $this->templates->show('Messages', 'messaging/messaging_page');
     }
 }
