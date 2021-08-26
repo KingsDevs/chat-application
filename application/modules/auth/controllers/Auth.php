@@ -48,7 +48,7 @@ class Auth extends MY_Controller
                 );
 
                 $this->session->set_userdata('userdata', $userdata);
-                print_r($userdata);
+                redirect(site_url('messaging'));
             }
 
         }
