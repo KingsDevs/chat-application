@@ -10,8 +10,8 @@ class AuthModel extends CI_Model
 
     public function insert_user($data)
     {
-        $data['firstname'] = $this->encrypt->encode($data['firstname']);
-        $data['lastname'] = $this->encrypt->encode($data['lastname']);
+        // $data['firstname'] = $this->encrypt->encode($data['firstname']);
+        // $data['lastname'] = $this->encrypt->encode($data['lastname']);
 
         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
@@ -53,8 +53,8 @@ class AuthModel extends CI_Model
             if(password_verify($data['password'], $query->row()->password))
             {
                 $data = $query->row();
-                $data->firstname = $this->encrypt->decode($data->firstname);
-                $data->lastname = $this->encrypt->decode($data->lastname);
+                // $data->firstname = $this->encrypt->decode($data->firstname);
+                // $data->lastname = $this->encrypt->decode($data->lastname);
                 return $data;
             }
             else
