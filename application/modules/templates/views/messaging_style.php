@@ -566,6 +566,7 @@
   margin: 15px 15px 5px 15px;
   width: calc(100% - 25px);
   font-size: 0.9em;
+  
 }
 #frame .content .messages ul li:nth-last-child(1) {
   margin-bottom: 20px;

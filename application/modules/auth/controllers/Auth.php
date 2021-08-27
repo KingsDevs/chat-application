@@ -105,8 +105,7 @@ class Auth extends MY_Controller
                 $config['maintain_ratio'] = FALSE;
                 $config['width']         = 600;
                 $config['height']       = 600;
-                $config['new_image'] = './assets/uploads/profile/'.$profile_pic_data['upload_data']['file_name'];
-
+               
                 $this->load->library('image_lib', $config);
 
                 $this->image_lib->resize();

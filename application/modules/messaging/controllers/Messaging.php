@@ -11,4 +11,16 @@ class Messaging extends MY_Controller
     {
         $this->templates->show('Messages', 'messaging/messaging_page');
     }
+
+    public function search_user()
+    {
+        if($this->input->is_ajax_request())
+        {
+            echo 'True';
+        }
+        else
+        {
+            echo "yaw";
+        }
+    }
 }

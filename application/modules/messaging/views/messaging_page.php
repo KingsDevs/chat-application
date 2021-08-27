@@ -11,14 +11,8 @@
 		<div id="profile">
 			<div class="wrap">
 				<img id="profile-img" src="<?php echo base_url('/assets/uploads/profile/'.$this->session->userdata('userdata')['profile_pic']); ?>" class="online" alt="" />
-				<div class="btn-group dropend">
-                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                        <div style="color:white;"><?php echo $this->session->userdata('userdata')['firstname'].' '.$this->session->userdata('userdata')['lastname'] ?></div>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" href="<?php echo site_url('logout'); ?>" style="font-size: smaller;">Logout</a></li>
-                    </ul>
-                </div>
+				<div style="color:white;"><?php echo $this->session->userdata('userdata')['firstname'].' '.$this->session->userdata('userdata')['lastname'] ?></div>
+		
 				<i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
 				<div id="status-options">
 					<ul>
@@ -28,14 +22,7 @@
 						<li id="status-offline"><span class="status-circle"></span> <p>Offline</p></li>
 					</ul>
 				</div>
-				<div id="expanded">
-					<label for="twitter"><i class="fa fa-facebook fa-fw" aria-hidden="true"></i></label>
-					<input name="twitter" type="text" value="mikeross" />
-					<label for="twitter"><i class="fa fa-twitter fa-fw" aria-hidden="true"></i></label>
-					<input name="twitter" type="text" value="ross81" />
-					<label for="twitter"><i class="fa fa-instagram fa-fw" aria-hidden="true"></i></label>
-					<input name="twitter" type="text" value="mike.ross" />
-				</div>
+				<
 			</div>
 		</div>
 		<div id="search">
@@ -68,7 +55,7 @@
 		</div>
 		<div id="bottom-bar">
 			<button id="addcontact" data-bs-toggle="modal" data-bs-target="#addContactModal"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span></button>
-			<button id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span></button>
+			<button id="logout"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span><a href="<?php echo site_url('logout'); ?>" style="text-decoration: none; color:white">Logout</a></span></button>
 		</div>
 	</div>
 	<div class="content">
@@ -139,14 +126,17 @@
       </div>
       <div class="modal-body">
       <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchUserBox">
+        <button class="btn btn-outline-success" type="submit" id="searchUserBtn">Search</button>
       </form>
+	  <hr style="background-color : black; color : black; height : 3px">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
+
+
+<?php echo $this->load->view('messaging/scripts/scripts') ?>
