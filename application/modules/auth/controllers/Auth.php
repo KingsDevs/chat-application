@@ -98,6 +98,19 @@ class Auth extends MY_Controller
             else
             {
                 $profile_pic_data = array('upload_data' => $this->upload->data());
+
+                $config['image_library'] = 'gd2';
+                $config['source_image'] = './assets/uploads/profile/'.$profile_pic_data['upload_data']['file_name'];
+                $config['create_thumb'] = TRUE;
+                $config['maintain_ratio'] = FALSE;
+                $config['width']         = 600;
+                $config['height']       = 600;
+                $config['new_image'] = './assets/uploads/profile/'.$profile_pic_data['upload_data']['file_name'];
+
+                $this->load->library('image_lib', $config);
+
+                $this->image_lib->resize();
+
                 $data = array(
                     'firstname'=>$this->input->post('firstname'),
                     'lastname'=>$this->input->post('lastname'),
