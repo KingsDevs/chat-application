@@ -17,16 +17,25 @@ class Messaging extends MY_Controller
     {
         if($this->input->is_ajax_request())
         {
-            $data = $this->input->post();
+            $data = array(
+                'search'=>$this->input->post(),
+                'firstname'=>$this->session->userdata('userdata')['firstname'],
+                'lastname'=>$this->session->userdata('userdata')['lastname'],
+                'username'=>$this->session->userdata('userdata')['username'],
+            );
+            //echo json_encode($data);
 
-            // $searched_users['searched_users'] = $this->MessagingModel->search_user($data);
-            // if($searched_users['searched_users'] !== FALSE)
-            // {
-            //     echo $this->load->view('messaging/searched_users', $searched_users);
-            // }
-            echo json_encode($data);
+            $searched_users = $this->MessagingModel->search_user($data['search']);
+            echo json_encode($searched_users);
             
         }
         
+    }
+
+    public function test()
+    {
+        $data = "w";
+        $searched_users = $this->MessagingModel->search_user($data);
+        print_r($searched_users);
     }
 }
