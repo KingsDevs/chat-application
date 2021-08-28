@@ -63,5 +63,5 @@ $route['signup']['POST'] = 'auth/signup';
 
 $route['messaging']['GET'] = 'messaging/messaging_get';
 
-$route['search_user'] = 'messaging/search_user';
+$route['messaging/search_user'] = 'messaging/search_user';
 

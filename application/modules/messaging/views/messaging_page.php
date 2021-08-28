@@ -124,13 +124,14 @@
         <h5 class="modal-title">Add Contact</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchUserBox">
-        <button class="btn btn-outline-success" type="submit" id="searchUserBtn">Search</button>
-      </form>
-	  <hr style="background-color : black; color : black; height : 3px">
-      </div>
+    	<div class="modal-body">
+			<div class="d-flex">
+				<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchUserBox">
+				<button class="btn btn-outline-success" type="submit" id="searchUserBtn">Search</button>
+			</div>
+			<hr style="background-color : black; color : black; height : 3px">
+			<div id="searchedUsers"></div>
+    	</div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
