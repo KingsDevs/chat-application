@@ -24,6 +24,7 @@ $(document).ready(function(){
                     var firstname = "<?php echo $this->session->userdata('userdata')['firstname'];?>";
                     var lastname = "<?php echo $this->session->userdata('userdata')['lastname'];?>";
                     var username = "<?php echo $this->session->userdata('userdata')['username'];?>";
+                    var imgpath = "<?php echo base_url("/assets/uploads/profile");?>/";
                     var cname = firstname + lastname + username;
                     for(i in data)
                     {
@@ -31,6 +32,7 @@ $(document).ready(function(){
                         if(searched_cname != cname)
                         {
                             body += '<li class="list-group-item d-flex justify-content-between align-items-start">';
+                            body += '<img src="' + imgpath + data[i]['profile_pic'] + '" style="width:5em;"  class="float-start" alt="...">';
                             body += '<div class="ms-2 me-auto">';
                             body += '<div class="fw-bold">';
                             body += data[i]['firstname'] +' '+ data[i]['lastname'];
