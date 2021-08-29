@@ -12,7 +12,7 @@ $(document).ready(function(){
         if(search != '')
         {
             $.ajax({
-                type: "POST",
+                type: "GET",
                 url: "<?php echo base_url('messaging/search_user'); ?>",
                 data: {
                     search : search
@@ -37,7 +37,7 @@ $(document).ready(function(){
                             body += '<div class="fw-bold">';
                             body += data[i]['firstname'] +' '+ data[i]['lastname'];
                             body += '</div>';
-                            body += '<a href="#" class="btn btn-primary btn-sm">Add</a>';
+                            body += '<button class="btn btn-primary btn-sm addContactBtn" value="'+data[i]['user_id']+'">Add</button>';
                             body += '</div>';
                             body += '</li>';
                         }
@@ -49,6 +49,21 @@ $(document).ready(function(){
         
         
         
+    });
+
+    $(document).on('click', '.addContactBtn', function(e){
+        var user_id = $(this).val();
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('messaging/add_contact'); ?>",
+            data: {
+                user_id : user_id
+            },
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+            }
+        });
     });
 });
 

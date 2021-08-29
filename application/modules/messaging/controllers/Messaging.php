@@ -18,7 +18,7 @@ class Messaging extends MY_Controller
         if($this->input->is_ajax_request())
         {
             $data = array(
-                'search'=>$this->input->post(),
+                'search'=>$this->input->get(),
                 'firstname'=>$this->session->userdata('userdata')['firstname'],
                 'lastname'=>$this->session->userdata('userdata')['lastname'],
                 'username'=>$this->session->userdata('userdata')['username'],
@@ -30,6 +30,16 @@ class Messaging extends MY_Controller
             
         }
         
+    }
+
+
+    public function add_contact()
+    {
+        if($this->input->is_ajax_request())
+        {
+            $data = $this->input->post();
+            echo json_encode($data);
+        }
     }
 
     public function test()

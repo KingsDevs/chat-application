@@ -10,7 +10,7 @@ class MessagingModel extends CI_Model
 
     public function search_user($data)
     {
-        $this->db->select('firstname, lastname, username, profile_pic');
+        $this->db->select('user_id, firstname, lastname, username, profile_pic');
         $this->db->from('users');
         $this->db->like('firstname', $data['search']);
         $this->db->or_like('lastname', $data['search']);
