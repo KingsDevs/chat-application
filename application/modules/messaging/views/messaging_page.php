@@ -55,7 +55,9 @@
 		</div>
 		<div id="bottom-bar">
 			<button id="addcontact" data-bs-toggle="modal" data-bs-target="#addContactModal"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span></button>
-			<button id="logout"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span><a href="<?php echo site_url('logout'); ?>" style="text-decoration: none; color:white">Logout</a></span></button>
+			<button id="notif" data-bs-toggle="modal" data-bs-target="#notificationModal"><i class="fa fa-bell fa-fw" aria-hidden="true"></i> <span>Notification<span class="badge bg-secondary" style="margin-left: 2em;">4</span></span></button>
+			<button id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span><a href="<?php echo site_url('logout'); ?>" style="text-decoration: none; color:white">Settings</a></span></button>
+			<button id="logout"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i> <span><a href="<?php echo site_url('logout'); ?>" style="text-decoration: none; color:white">Logout</a></span></button>
 		</div>
 	</div>
 	<div class="content">
@@ -117,6 +119,7 @@
 
 <!-- modals -->
 
+<!-- Add Contact Modal -->
 <div class="modal fade" id="addContactModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -131,6 +134,26 @@
 			</div>
 			<hr style="background-color : black; color : black; height : 3px">
 			<div id="searchedUsers"></div>
+    	</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Notification Modal -->
+
+<div class="modal fade" id="notificationModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Notifications</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    	<div class="modal-body">
+			<p><b>Notification List</b></p>
+			<div id="notificationList"></div>
     	</div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

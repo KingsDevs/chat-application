@@ -24,6 +24,8 @@
 
     <!-- <?php //echo $this->load->view('templates/messaging_style'); ?> -->
 
+
+
     <?php echo $this->load->view($content); ?>
 
 
