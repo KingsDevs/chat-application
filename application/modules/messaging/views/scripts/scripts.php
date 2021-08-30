@@ -58,7 +58,7 @@ $(document).ready(function(){
                     
                 }
             });
-            console.log('adas');
+            
         }
         
         
@@ -80,7 +80,8 @@ $(document).ready(function(){
             success: function (data) {
                 console.log(data);
                 addbtn.replaceWith( "<small>requested</small>" );
-                //const socket = io.connect( '<?php echo base_url(); ?>');
+                const socket = io.connect( '<?php echo base_url(); ?>');
+                
 
             }
         });
