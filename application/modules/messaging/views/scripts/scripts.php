@@ -6,7 +6,7 @@
 
 $(document).ready(function(){
     $(".messages").animate({ scrollTop: $(document).height() }, "fast");
-    
+
     $(document).on('click', '#searchUserBtn', function(e){
         e.preventDefault();
         var search = $('#searchUserBox').val();
@@ -23,6 +23,7 @@ $(document).ready(function(){
                 success: function(data){
                     console.log(data);
                     var body = '';
+                    //var user_id = "<?php echo $this->session->userdata('userdata')['user_id'];?>";
                     var firstname = "<?php echo $this->session->userdata('userdata')['firstname'];?>";
                     var lastname = "<?php echo $this->session->userdata('userdata')['lastname'];?>";
                     var username = "<?php echo $this->session->userdata('userdata')['username'];?>";
@@ -44,9 +45,12 @@ $(document).ready(function(){
                             body += '</li>';
                         }
                     }
+                    
                     $('#searchedUsers').html(body);
+                    
                 }
             });
+            console.log('adas');
         }
         
         
@@ -55,6 +59,9 @@ $(document).ready(function(){
 
     $(document).on('click', '.addContactBtn', function(e){
         var user_id = $(this).val();
+        
+        const addbtn = $(this);
+        
         $.ajax({
             type: "POST",
             url: "<?php echo base_url('messaging/add_contact'); ?>",
@@ -64,7 +71,7 @@ $(document).ready(function(){
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                $(this).replaceWith( "<small>requested</small>" );
+                addbtn.replaceWith( "<small>requested</small>" );
                 //const socket = io.connect( '<?php echo base_url(); ?>');
 
             }

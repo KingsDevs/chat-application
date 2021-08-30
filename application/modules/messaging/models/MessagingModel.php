@@ -10,14 +10,19 @@ class MessagingModel extends CI_Model
 
     public function search_user($data)
     {
-        $this->db->select('user_id, firstname, lastname, username, profile_pic');
+        
+        $this->db->select('user_id, firstname, lastname, username, profile_pic, add_contact_request.request_status');
         $this->db->from('users');
         $this->db->like('firstname', $data['search']);
         $this->db->or_like('lastname', $data['search']);
         $this->db->or_like('username', $data['search']);
+        $this->db->join('add_contact_request', $data['user_id'].' = add_contact_request.sender_id 
+        AND users.user_id = add_contact_request.reciever_id'
+        , 'left');
         // $this->db->not_like('firstname', $data['firstname']);
         // $this->db->not_like('lastname', $data['lastname']);
         // $this->db->not_like('username', $data['username']);
+
 
         $query = $this->db->get();
         if($query->num_rows() == 0)
@@ -45,9 +50,9 @@ class MessagingModel extends CI_Model
         return FALSE;
     }
 
-    private function check_request_numrow($sender_id, $reciever_id)
+    public function check_request($sender_id, $reciever_id)
     {
-        $this->db->select('request_id');
+        $this->db->select('request_status');
         $this->db->from('add_contact_request');
         $this->db->where('sender_id', $sender_id);
         $this->db->where('reciever_id', $reciever_id);
@@ -56,10 +61,10 @@ class MessagingModel extends CI_Model
         $query = $this->db->get();
         if($query->num_rows() == 1)
         {
-            return TRUE;
+            return $query->row();
         } 
-        
-        return FALSE;
 
+        return FALSE;
+        
     }
 }

@@ -18,14 +18,15 @@ class Messaging extends MY_Controller
         if($this->input->is_ajax_request())
         {
             $data = array(
-                'search'=>$this->input->get(),
+                'search'=>$this->input->get()['search'],
+                'user_id'=>$this->session->userdata('userdata')['user_id'],
                 'firstname'=>$this->session->userdata('userdata')['firstname'],
                 'lastname'=>$this->session->userdata('userdata')['lastname'],
                 'username'=>$this->session->userdata('userdata')['username'],
             );
             //echo json_encode($data);
 
-            $searched_users = $this->MessagingModel->search_user($data['search']);
+            $searched_users = $this->MessagingModel->search_user($data);
             echo json_encode($searched_users);
             
         }
@@ -58,12 +59,40 @@ class Messaging extends MY_Controller
 
 
         }
+
+        
     }
 
     public function test()
     {
-        $data = "w";
+        $data = array(
+            'search'=>'Pak',
+            'user_id'=>$this->session->userdata('userdata')['user_id'],
+            'firstname'=>$this->session->userdata('userdata')['firstname'],
+            'lastname'=>$this->session->userdata('userdata')['lastname'],
+            'username'=>$this->session->userdata('userdata')['username'],
+        );
+        //echo json_encode($data);
+
         $searched_users = $this->MessagingModel->search_user($data);
         print_r($searched_users);
+    }
+    private function check_contact()
+    {
+        if($this->input->is_ajax_request())
+        {
+            $data = $this->input->get();
+            //echo json_encode($data);
+            $result = $this->MessagingModel->check_request($data['sender_id'], $data['reciever_id']);
+            if($result !== FALSE)
+            {
+                echo json_encode($result);
+            }
+            else
+            {
+                echo json_encode(array('request_status' => 'No Records'));
+            }        
+        }        
+
     }
 }
