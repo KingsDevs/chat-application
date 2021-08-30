@@ -37,8 +37,26 @@ class Messaging extends MY_Controller
     {
         if($this->input->is_ajax_request())
         {
-            $data = $this->input->post();
-            echo json_encode($data);
+            $user_id = $this->input->post();
+            $data = array(
+                'sender_id' => $this->session->userdata('userdata')['user_id'],
+                'reciever_id' => $user_id['user_id'],
+                'request_status' => "Pending",
+                'has_seen_sender' => "No",
+                'has_seen_reciever' => "No",
+            );
+
+            $result = $this->MessagingModel->add_contact($data);
+            if($result !== FALSE)
+            {
+                echo json_encode($result);
+            }
+            else
+            {
+                echo json_encode(array('status' => 'Something Went Wrong'));
+            }
+
+
         }
     }
 

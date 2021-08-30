@@ -27,4 +27,39 @@ class MessagingModel extends CI_Model
 
         return $query->result();
     }
+
+    public function add_contact($data)
+    {
+        $insert_request = $this->db->insert('add_contact_request', $data);
+        if($insert_request)
+        {
+            $this->db->select('user_id, firstname, lastname, username, profile_pic');
+            $this->db->from('users');
+            $this->db->where('user_id', $data['reciever_id']);
+            $this->db->limit(1);
+
+            $query = $this->db->get();
+            return $query->row();
+        }
+
+        return FALSE;
+    }
+
+    private function check_request_numrow($sender_id, $reciever_id)
+    {
+        $this->db->select('request_id');
+        $this->db->from('add_contact_request');
+        $this->db->where('sender_id', $sender_id);
+        $this->db->where('reciever_id', $reciever_id);
+        $this->db->limit(1);
+
+        $query = $this->db->get();
+        if($query->num_rows() == 1)
+        {
+            return TRUE;
+        } 
+        
+        return FALSE;
+
+    }
 }
