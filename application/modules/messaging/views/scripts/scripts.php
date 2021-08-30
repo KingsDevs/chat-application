@@ -40,7 +40,15 @@ $(document).ready(function(){
                             body += '<div class="fw-bold">';
                             body += data[i]['firstname'] +' '+ data[i]['lastname'];
                             body += '</div>';
-                            body += '<button class="btn btn-primary btn-sm addContactBtn" value="'+data[i]['user_id']+'">Add</button>';
+                            if(data[i]['request_status'] === 'Pending')
+                            {
+                                body += '<small>requested</small>';
+                            }
+                            else
+                            {
+                                body += '<button class="btn btn-primary btn-sm addContactBtn" value="'+data[i]['user_id']+'">Add</button>';
+                            }
+                            
                             body += '</div>';
                             body += '</li>';
                         }
